@@ -5,11 +5,8 @@
  */
 package com.act.controller;
 
-import com.act.dao.ClassSVDA;
-import com.act.model.ClassSV;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

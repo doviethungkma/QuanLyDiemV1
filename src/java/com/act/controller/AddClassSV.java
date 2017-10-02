@@ -101,7 +101,6 @@ public class AddClassSV extends HttpServlet {
             request.setAttribute("lstClassSV", lstClassSVDA);
             request.getRequestDispatcher("ManageClass").forward(request, response);
 
-//            response.sendRedirect("quanlysinhvien.jsp");
         }
     }
 

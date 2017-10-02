@@ -51,6 +51,8 @@ public class Login extends HttpServlet {
                     request.getRequestDispatcher("GiangVien/giangvien.jsp").forward(request, response);
                 } else if (roleDA.checkRole(loginID).equals("SinhVien")) {
                     request.getRequestDispatcher("SinhVien/sinhvien.jsp").forward(request, response);
+                } else {
+                    response.sendRedirect("404.jsp");
                 }
             }
         }
@@ -111,6 +113,8 @@ public class Login extends HttpServlet {
                     session.setAttribute("userAccount", userAccount);
                     session.setAttribute("loginID", loginID);
                     request.getRequestDispatcher("SinhVien/sinhvien.jsp").forward(request, response);
+                } else {
+                    response.sendRedirect("404.jsp");
                 }
 
             }

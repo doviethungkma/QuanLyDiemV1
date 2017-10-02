@@ -102,8 +102,12 @@ public class EditStudent extends HttpServlet {
             ClassSVDA classSVDA = new ClassSVDA();
             int classID = classSVDA.getClassByClassName(classSV).getID();
 
-            studentDA.updateStudentByID(id, fullname, dateOfBirth, addrress, sex, "sjhd", classID);
-            request.getRequestDispatcher("ManageStudent").forward(request, response);
+            boolean check = studentDA.updateStudentByID(id, fullname, dateOfBirth, addrress, sex, "sjhd", classID);
+            if (check) {
+                request.getRequestDispatcher("ManageStudent").forward(request, response);
+            } else {
+                response.sendRedirect("404.jsp");
+            }
 
 //            response.sendRedirect("quanlysinhvien.jsp");
         }

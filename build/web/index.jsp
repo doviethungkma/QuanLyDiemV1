@@ -38,13 +38,28 @@
         <script src="assets/plugins/3d-bold-navigation/js/modernizr.js"></script>
         <script src="assets/plugins/offcanvasmenueffects/js/snap.svg-min.js"></script>
 
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
+        <script type="text/javascript">
+            function checkForm(form)
+            {
+                if (form.username.value == "") {
+                    alert("Username không được rỗng");
+                    form.username.focus();
+                    return false;
+                }
+                re = /^[A-Za-z0-9_\.]{6,32}$/;
+                if (!re.test(form.username.value)) {
+                    alert("Username > 6 kí tự");
+                    form.username.focus();
+                    return false;
+                }
+                re = /^([A-Z]){1}([\w_\.!@#$%^&*()]+){5,31}$/;
+                if (!re.test(form.pwd1.value)) {
+                    alert("Err: Password phải > 6 kí tự và gồm ký tự thường, ký tự hoa ,ký số và ký tự đặc biệt");
+                    form.pwd1.focus();
+                    return false;
+                }
+            }
+        </script>
     </head>
     <body class="page-login">
 
@@ -56,9 +71,9 @@
                             <div class="login-box">
                                 <a href="index.html" class="logo-name text-lg text-center">Đăng nhập</a>
                                 <p class="text-center m-t-md">Xin nhập tài khoản và mật khẩu</p>
-                                <form class="m-t-md" action="Login" method="POST">
-                                    <div class="form-group">
-                                        <input type="text" name="txtUsername" class="form-control" placeholder="Account" required>
+                                <form class="m-t-md" action="Login" method="POST" onsubmit="return checkForm(this) >
+                                                < div class ="form-group">
+                                      <input type="text" name="txtUsername" class="form-control" placeholder="Account" required>
                                     </div>
                                     <div class="form-group">
                                         <input type="password" name="txtPassword" class="form-control" placeholder="Password" required>
@@ -88,6 +103,7 @@
         <script src="assets/plugins/offcanvasmenueffects/js/classie.js"></script>
         <script src="assets/plugins/waves/waves.min.js"></script>
         <script src="assets/js/modern.min.js"></script>
+
 
     </body>
 </html>
