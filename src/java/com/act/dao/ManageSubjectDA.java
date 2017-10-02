@@ -6,6 +6,7 @@
 package com.act.dao;
 
 import com.act.model.Subject;
+import com.act.model.Teach;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -126,7 +127,6 @@ public class ManageSubjectDA {
 //            return null;
 //        }
 //    }
-
     public ArrayList<Subject> getAllSubject() {
         DataAccess da = new DataAccess();
         Connection conn = da.getConnection();
@@ -154,9 +154,40 @@ public class ManageSubjectDA {
         }
     }
 
-//    public static void main(String[] args) {
-//        ManageSubjectDA manageSubjectDA = new ManageSubjectDA();
-//        Subject subject = manageSubjectDA.getSubjectByYear("2014-2015");
-//        System.out.println(subject.getSubjectName());
-//    }
+    public ArrayList<Teach> getSubjectByLecturer(int lecturerID) {
+        DataAccess da = new DataAccess();
+        Connection conn = da.getConnection();
+        PreparedStatement ps;
+        ResultSet rs;
+
+        String sql = "SELECT * FROM tbl_teach, tbl_mark "
+                + "WHERE tbl_mark.TeachID = tbl_teach.ID "
+                + "AND tbl_mark.LecturerID = ?";
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, lecturerID);
+            rs = ps.executeQuery();
+            ArrayList<Teach> lstTeachInfo = new ArrayList();
+            while (rs.next()) {
+                Teach teach = new Teach();
+                teach.setID(rs.getInt("ID"));
+                teach.setSubjectID(rs.getInt("SubjectID"));
+                teach.setLecturerID(rs.getInt("LecturerID"));
+                teach.setName(rs.getString("Name"));
+                lstTeachInfo.add(teach);
+            }
+            return lstTeachInfo;
+        } catch (SQLException ex) {
+            Logger.getLogger(ManageSubjectDA.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+    public static void main(String[] args) {
+        ManageSubjectDA manageSubjectDA = new ManageSubjectDA();
+        ArrayList<Teach> lstSubject = manageSubjectDA.getSubjectByLecturer(4);
+        for (Teach teach : lstSubject) {
+            System.out.println(teach.getID());
+        }
+    }
 }

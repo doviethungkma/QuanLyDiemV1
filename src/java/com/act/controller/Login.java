@@ -97,16 +97,16 @@ public class Login extends HttpServlet {
                 if (roleDA.checkRole(loginID).equals("QuanLy")) {
                     session.setAttribute("userAccount", userAccount);
                     session.setAttribute("loginID", loginID);
-//                    response.sendRedirect("CanBoQuanLy/canboquanly.jsp");
                     request.getRequestDispatcher("CanBoQuanLy/canboquanly.jsp").forward(request, response);
                 } else if (roleDA.checkRole(loginID).equals("GVCN")) {
+                    session.setAttribute("userAccount", userAccount);
+                    session.setAttribute("loginID", loginID);
                     request.getRequestDispatcher("GiaoVienChuNhiem/giaovienchunhiem.jsp").forward(request, response);
-                    session.setAttribute("userAccount", userAccount);
-                    session.setAttribute("loginID", loginID);
+                    request.getRequestDispatcher("GiaoVienChuNhiem/giaovienchunhiem.jsp").forward(request, response);
                 } else if (roleDA.checkRole(loginID).equals("GiangVien")) {
-                    request.getRequestDispatcher("GiangVien/giangvien.jsp").forward(request, response);
                     session.setAttribute("userAccount", userAccount);
                     session.setAttribute("loginID", loginID);
+                    request.getRequestDispatcher("GiangVien/giangvien.jsp").forward(request, response);
                 } else if (roleDA.checkRole(loginID).equals("SinhVien")) {
                     session.setAttribute("userAccount", userAccount);
                     session.setAttribute("loginID", loginID);

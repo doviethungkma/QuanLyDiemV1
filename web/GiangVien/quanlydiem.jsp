@@ -4,6 +4,9 @@
     Author     : shadyside
 --%>
 
+<%@page import="com.act.model.User"%>
+<%@page import="com.act.model.Teach"%>
+<%@page import="com.act.dao.ManageLecturerDA"%>
 <%@page import="com.act.dao.ResultDA"%>
 <%@page import="com.act.dao.ManageTeachDA"%>
 <%@page import="com.act.controller.ManageTeach"%>
@@ -105,7 +108,7 @@
                                         <li role="presentation"><a href="inbox.html"><i class="fa fa-envelope"></i>Inbox<span class="badge badge-success pull-right">4</span></a></li>
                                         <li role="presentation" class="divider"></li>
                                         <li role="presentation"><a href="lock-screen.html"><i class="fa fa-lock"></i>Lock screen</a></li>
-                                        <li role="presentation"><a href="login.html"><i class="fa fa-sign-out m-r-xs"></i>Log out</a></li>
+                                        <li role="presentation"><a href="Logout"><i class="fa fa-sign-out m-r-xs"></i>Log out</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -205,10 +208,14 @@
                                                         <option>Chọn môn học</option>
                                                         <%
                                                             ManageSubjectDA manageSubjectDA = new ManageSubjectDA();
-                                                            ArrayList<Subject> lstAllSubject = manageSubjectDA.getAllSubject();
-                                                            for (Subject subject : lstAllSubject) {
+                                                            ManageLecturerDA manageLecturerDA = new ManageLecturerDA();
+                                                            User user = (User) session.getAttribute("userAccount");
+                                                            int lecturerID = manageLecturerDA.getLecturerByLoginID(user.getLoginID()).getID();
+                                                            ArrayList<Teach> lstAllSubject = manageSubjectDA.getSubjectByLecturer(lecturerID);
+                                                            for (Teach teach : lstAllSubject) {
+                                                                int subjectID = teach.getSubjectID();
                                                         %>
-                                                        <option value="<%= subject.getSubjectName()%>"><%= subject.getSubjectName()%></option>
+                                                        <option value="<%= manageSubjectDA.getSubjectByID(subjectID).getSubjectName()%>"><%= manageSubjectDA.getSubjectByID(subjectID).getSubjectName()%></option>
                                                         <%
                                                             }
                                                         %>
@@ -222,7 +229,7 @@
                                                     <button type="submit" class="btn btn-success">Xem điểm thi</button>
                                                 </div>
                                                 <div class="col-lg-2">
-                                                    <a href="VaoDiem"><button type="button" class="btn btn-danger">Vào điểm</button></a>
+                                                    <a href="VaoDiem"><button type="button" class="btn ">Vào điểm</button></a>
                                                 </div>
                                             </div>
 

@@ -217,10 +217,46 @@ public class StudentDA {
 
     }
 
+    public ArrayList<Student> getStudentBySubjectClass(int teachID) {
+        DataAccess da = new DataAccess();
+        Connection conn = da.getConnection();
+        PreparedStatement ps;
+        ResultSet rs;
+
+        String sql = "SELECT * FROM tbl_student, tbl_result "
+                + "WHERE tbl_student.ID = tbl_result.StudentID "
+                + "AND TeachID = ?";
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, teachID);
+            rs = ps.executeQuery();
+            ArrayList<Student> lstStudent = new ArrayList<>();
+            while (rs.next()) {
+                Student student = new Student();
+                student.setID(rs.getInt("ID"));
+                student.setStudentName(rs.getString("StudentName"));
+                student.setDateOfBirth(rs.getString("DateOfBirth"));
+                student.setAddress(rs.getString("Address"));
+                student.setSex(rs.getString("Sex"));
+                student.setAvatar(rs.getString("Avatar"));
+                student.setClassID(rs.getInt("ClassID"));
+                student.setLoginID(rs.getInt("LoginID"));
+                lstStudent.add(student);
+            }
+            return lstStudent;
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDA.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+
     public static void main(String[] args) {
         StudentDA studentDA = new StudentDA();
 //        ClassSV classSV = studentDA.getClassByID(1);
-        Student student = studentDA.getStudentByLoginID(4);
-        System.out.println(student.getStudentName());
+        ArrayList<Student> lstStudents = studentDA.getStudentBySubjectClass(26);
+        for (Student lstStudent : lstStudents) {
+            System.out.println(lstStudent.getStudentName());
+        }
     }
 }

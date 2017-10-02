@@ -5,7 +5,10 @@
  */
 package com.act.controller;
 
+import com.act.dao.ClassSVDA;
+import com.act.dao.ManageLecturerDA;
 import com.act.dao.StudentDA;
+import com.act.model.ClassSV;
 import com.act.model.Student;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author shadyside
  */
-public class VaoDiem extends HttpServlet {
+public class AddClassSV extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +41,10 @@ public class VaoDiem extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet VaoDiem</title>");
+            out.println("<title>Servlet AddClassSV</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet VaoDiem at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddClassSV at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,7 +67,7 @@ public class VaoDiem extends HttpServlet {
         if (request.getSession().getAttribute("userAccount") == null) {
             response.sendRedirect("Login.jsp");
         } else {
-            request.getRequestDispatcher("GiangVien/vaodiem.jsp").forward(request, response);
+            request.getRequestDispatcher("CanBoQuanLy/themlopchunhiem.jsp").forward(request, response);
         }
     }
 
@@ -79,7 +82,27 @@ public class VaoDiem extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        if (request.getSession().getAttribute("userAccount") == null) {
+            response.sendRedirect("index.jsp");
+        } else {
+            String className = request.getParameter("txtClassName");
+            String grade = request.getParameter("txtGrade");
+            String khoa = request.getParameter("sltKhoa");
+            String GVCN = request.getParameter("sltIDGVCN");
+            ManageLecturerDA manageLecturerDA = new ManageLecturerDA();
+            int IDGVCN = manageLecturerDA.getLecturerByLecturerName(GVCN).getID();
 
+            ClassSVDA classSVDA = new ClassSVDA();
+            boolean check = classSVDA.addClassSV(className, Integer.parseInt(grade), khoa, IDGVCN);
+            ArrayList<ClassSV> lstClassSVDA = classSVDA.getAllClass();
+            request.setAttribute("lstClassSV", lstClassSVDA);
+            request.getRequestDispatcher("ManageClass").forward(request, response);
+
+//            response.sendRedirect("quanlysinhvien.jsp");
+        }
     }
 
     /**

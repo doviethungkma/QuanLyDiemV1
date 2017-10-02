@@ -80,7 +80,7 @@
                                     <h4 class="panel-title">Thêm lớp học</h4>
                                 </div>
                                 <div class="panel-body">
-                                    <form class="form-horizontal" action="AddSubjectClass" method="POST">
+                                    <form class="form-horizontal" action="AddClassSV" method="POST">
                                         <div class="form-group">
                                             <label for="input-Default" class="col-sm-2 control-label">Tên lớp học</label>
                                             <div class="col-sm-10">

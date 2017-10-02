@@ -84,44 +84,47 @@
                                         <div class="form-group">
                                             <label for="input-Default" class="col-sm-2 control-label">Tên lớp học</label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="txtName" class="form-control" id="input-Default txtFullName" >
+                                                <input type="text" name="txtClassName" class="form-control" id="input-Default txtFullName" >
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Tên môn học</label>
+                                            <label class="col-sm-2 control-label">Khóa</label>
                                             <div class="col-sm-10">
-                                                <select class="form-control m-b-sm" name="sltSubjectName" id="sltSubjectName">
-                                                <%
-                                                    ManageSubjectDA manageSubjectDA = new ManageSubjectDA();
-                                                    ArrayList<Subject> lstAllSubject = manageSubjectDA.getAllSubject();
-                                                    for (Subject subject : lstAllSubject) {
-                                                %>
-                                                <option value="<%= subject.getSubjectName()%>" ><%= subject.getSubjectName()%></option>
-                                                <%
-                                                    }
-                                                %>
-                                                <!--                                                    <option value="Nữ"></option>-->
-                                            </select>
+                                                <input type="text" name="txtGrade" class="form-control" id="input-Default txtFullName" >
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">Giảng viên</label>
-                                        <div class="col-sm-10">
-                                            <select class="form-control m-b-sm" name="sltLecturer" id="sltLecturer">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Khoa</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control m-b-sm" name="sltKhoa" id="sltLecturer">
+
+                                                    <option value="Công nghệ thông tin">Công nghệ thông tin</option>
+                                                    <option value="An toàn thông tin">An toàn thông tin</option>
+                                                    <option value="Điện tử viễn thông">Điện tử viễn thông</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Giáo viên chủ nhiệm</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control m-b-sm" name="sltIDGVCN" id="sltLecturer">
                                                 <%
                                                     ManageLecturerDA manageLecturerDA = new ManageLecturerDA();
-                                                    ArrayList<Lecturer> lstAllLecturer = manageLecturerDA.getAllLecture();
-                                                    for (Lecturer lecturer : lstAllLecturer) {
+                                                    ArrayList<Lecturer> lstLecturer = manageLecturerDA.getAllLecture();
+                                                    for (Lecturer lecturer : lstLecturer) {
                                                 %>
                                                 <option value="<%= lecturer.getLecturerName()%>"><%= lecturer.getLecturerName()%></option>
                                                 <%
                                                     }
                                                 %>
+                                                
+
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-lg-offset-8">
-                                        <button type="submit" class="btn btn-success">Thêm lớp học</button>
+                                        <button type="submit" class="btn btn-success">Sửa lớp học</button>
                                     </div>
                                     <div class="col-lg-2">
                                         <button type="button" class="btn btn-default">&nbsp;&nbsp;&nbsp;Hủy&nbsp;&nbsp;&nbsp;</button>

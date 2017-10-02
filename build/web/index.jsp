@@ -47,9 +47,7 @@
 
     </head>
     <body class="page-login">
-        <%
-            if (session.getAttribute("userAccount") == null) {
-        %>
+
         <main class="page-content">
             <div class="page-inner">
                 <div id="main-wrapper">
@@ -75,9 +73,7 @@
                 </div><!-- Main Wrapper -->
             </div><!-- Page Inner -->
         </main><!-- Page Content -->
-        <%
-            }      
-        %>
+
 
 
         <!-- Javascripts -->

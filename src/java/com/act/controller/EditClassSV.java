@@ -5,8 +5,8 @@
  */
 package com.act.controller;
 
-import com.act.dao.StudentDA;
-import com.act.model.Student;
+import com.act.dao.ClassSVDA;
+import com.act.model.ClassSV;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author shadyside
  */
-public class VaoDiem extends HttpServlet {
+public class EditClassSV extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +38,10 @@ public class VaoDiem extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet VaoDiem</title>");
+            out.println("<title>Servlet EditClassSV</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet VaoDiem at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet EditClassSV at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,8 +64,9 @@ public class VaoDiem extends HttpServlet {
         if (request.getSession().getAttribute("userAccount") == null) {
             response.sendRedirect("Login.jsp");
         } else {
-            request.getRequestDispatcher("GiangVien/vaodiem.jsp").forward(request, response);
+            request.getRequestDispatcher("CanBoQuanLy/sualopchunhiem.jsp").forward(request, response);
         }
+
     }
 
     /**
@@ -79,7 +80,7 @@ public class VaoDiem extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        processRequest(request, response);
     }
 
     /**

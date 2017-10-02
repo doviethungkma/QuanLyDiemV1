@@ -85,7 +85,7 @@ public class MarkDA {
         }
 
     }
-    
+
     public ArrayList<Mark> getMarkByLecturerID(int lecturerID) {
         DataAccess da = new DataAccess();
         Connection conn = da.getConnection();
@@ -112,11 +112,9 @@ public class MarkDA {
         }
 
     }
-    
-    
-    public static void main(String[] args) {
-       MarkDA markDA = new MarkDA();
-        System.out.println(markDA.assignMark("Xây dựng ứng dụng web an toàn", "L02", 1));
-    }
 
+//    public static void main(String[] args) {
+//       MarkDA markDA = new MarkDA();
+//        System.out.println(markDA.assignMark("Xây dựng ứng dụng web an toàn", "L02", 1));
+//    }
 }

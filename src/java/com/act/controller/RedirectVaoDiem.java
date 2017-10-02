@@ -5,11 +5,10 @@
  */
 package com.act.controller;
 
-import com.act.dao.StudentDA;
-import com.act.model.Student;
+import com.act.dao.ManageLecturerDA;
+import com.act.dao.ManageSubjectDA;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author shadyside
  */
-public class VaoDiem extends HttpServlet {
+public class RedirectVaoDiem extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +37,10 @@ public class VaoDiem extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet VaoDiem</title>");
+            out.println("<title>Servlet RedirectVaoDiem</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet VaoDiem at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet RedirectVaoDiem at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,13 +58,7 @@ public class VaoDiem extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        if (request.getSession().getAttribute("userAccount") == null) {
-            response.sendRedirect("Login.jsp");
-        } else {
-            request.getRequestDispatcher("GiangVien/vaodiem.jsp").forward(request, response);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -79,7 +72,25 @@ public class VaoDiem extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        if (request.getSession().getAttribute("userAccount") == null) {
+            response.sendRedirect("Login.jsp");
+        } else {
+            int loginID = (int) request.getSession().getAttribute("loginID");
 
+            String year = (String) request.getParameter("sltYear");
+            int semester = Integer.parseInt(request.getParameter("sltSemester"));
+            String subjectName = request.getParameter("sltSubject");
+            String classSubjectName = request.getParameter("sltClassName");
+
+            request.setAttribute("year", year);
+            request.setAttribute("semester", semester);
+            request.setAttribute("subjectName", subjectName);
+            request.setAttribute("classSubjectName", classSubjectName);
+
+            request.getRequestDispatcher("GiangVien/vaodiem.jsp").forward(request, response);
+        }
     }
 
     /**

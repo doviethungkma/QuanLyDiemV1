@@ -56,6 +56,30 @@
         <servlet-name>Logout</servlet-name>
         <servlet-class>com.act.controller.Logout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateAsignToMark</servlet-name>
+        <servlet-class>com.act.controller.UpdateAsignToMark</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VaoDiem</servlet-name>
+        <servlet-class>com.act.controller.VaoDiem</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RedirectVaoDiem</servlet-name>
+        <servlet-class>com.act.controller.RedirectVaoDiem</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageClass</servlet-name>
+        <servlet-class>com.act.controller.ManageClass</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddClassSV</servlet-name>
+        <servlet-class>com.act.controller.AddClassSV</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditClassSV</servlet-name>
+        <servlet-class>com.act.controller.EditClassSV</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddStudent</servlet-name>
         <url-pattern>/AddStudent</url-pattern>
@@ -111,6 +135,30 @@
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateAsignToMark</servlet-name>
+        <url-pattern>/UpdateAsignToMark</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VaoDiem</servlet-name>
+        <url-pattern>/VaoDiem</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RedirectVaoDiem</servlet-name>
+        <url-pattern>/RedirectVaoDiem</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageClass</servlet-name>
+        <url-pattern>/ManageClass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddClassSV</servlet-name>
+        <url-pattern>/AddClassSV</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditClassSV</servlet-name>
+        <url-pattern>/EditClassSV</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

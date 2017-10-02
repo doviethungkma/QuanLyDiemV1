@@ -110,7 +110,6 @@
                                                     <th>Lớp</th>
                                                     <th>Kỳ học</th>
                                                     <th>Năm học</th>
-                                                    <td colspan="2">Quản lý</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -121,6 +120,7 @@
                                                 ManageSubjectDA manageSubjectDA = new ManageSubjectDA();
                                                 ManageTeachDA manageTeachDA = new ManageTeachDA();
                                                 for (Mark mark : lstMark) {
+                                                    int markID = mark.getID();
                                                     int teachID = mark.getTeachID();
                                                     int lecturerID = mark.getLecturerID();
                                                     int subjectID = manageTeachDA.getTeachInfoByID(teachID).getSubjectID();
@@ -132,10 +132,6 @@
                                                 <td><%= manageTeachDA.getTeachInfoByID(teachID).getName()%></td>
                                                 <td><%=  manageSubjectDA.getSubjectByID(subjectID).getSemester()%></td>
                                                 <td><%= manageSubjectDA.getSubjectByID(subjectID).getYear()%></td>
-                                                <td>
-                                                    <button type="button" class="btn btn-success">Sửa</button>
-                                                    <button type="button" class="btn btn-danger">Xóa</button>
-                                                </td>
                                             </tr>
                                             <%                                                }
                                             %>

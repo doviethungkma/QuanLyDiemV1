@@ -74,7 +74,8 @@
                     <li><a href="ViewResultByManager" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Xem điểm sinh viên</p></a></li>
                     <li><a href="profile.html" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>In danh sách điểm</p></a></li>
                     <li><a href="ManageStudent" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Quản lý sinh viên</p></a></li>
-                    <li><a href="ManageTeach" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Quản lý lớp học</p></a></li>
+                    <li><a href="ManageTeach" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Quản lý lớp môn học</p></a></li>
+                    <li><a href="ManageClass" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Quản lý lớp chủ nhiệm</p></a></li>
                 </ul>
 
             </div><!-- Page Sidebar Inner -->

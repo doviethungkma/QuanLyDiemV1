@@ -96,7 +96,6 @@ public class ClassSVDA {
         }
     }
 
-    
     //Chưa test
     public boolean updateClassByClassID(int classID, String className, int grade, String khoa, int IDGVCN) {
         DataAccess da = new DataAccess();
@@ -124,11 +123,35 @@ public class ClassSVDA {
             return false;
         }
     }
-    
-    
-    
+
+    public boolean addClassSV(String className, int grade, String khoa, int IDGVCN) {
+        DataAccess da = new DataAccess();
+        Connection conn = da.getConnection();
+        PreparedStatement ps;
+        ResultSet rs;
+
+        String sql = "INSERT INTO tbl_class (ClassName, Grade, Khoa, IDGVCN) "
+                + "VALUES (?,?,?,?)";
+
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, className);
+            ps.setInt(2, grade);
+            ps.setString(3, khoa);
+            ps.setInt(4, IDGVCN);
+            if (ps.executeUpdate() > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDA.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+
 //    public static void main(String[] args) {
 //        ClassSVDA classSVDA = new ClassSVDA();
-//        System.out.println(classSVDA.updateClassByClassID(1, "AT10C", 9, "CNTT", 1));
+//        System.out.println(classSVDA.addClassSV("AT10E", 10, "ATTT", 4));
 //    }
 }
