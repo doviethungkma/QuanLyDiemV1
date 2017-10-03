@@ -4,6 +4,8 @@
     Author     : shadyside
 --%>
 
+<%@page import="com.act.dao.RoleDA"%>
+<%@page import="com.act.model.User"%>
 <%@page import="com.act.model.Lecturer"%>
 <%@page import="com.act.dao.ManageLecturerDA"%>
 <%@page import="com.act.model.Subject"%>
@@ -60,6 +62,12 @@
 
     </head>
     <body class="page-header-fixed">
+        <%
+            User user = (User) session.getAttribute("userAccount");
+            int loginID = user.getLoginID();
+            RoleDA roleDA = new RoleDA();
+            if (loginID > 0 && roleDA.checkRole(loginID).equals("QuanLy")) {
+        %>      
         <jsp:include page="../Menu.jsp"></jsp:include>
         <jsp:include page="../sidebar.jsp"></jsp:include>   
             <div class="page-inner">
@@ -80,7 +88,7 @@
                                     <h4 class="panel-title">Thêm lớp học</h4>
                                 </div>
                                 <div class="panel-body">
-                                    <form class="form-horizontal" action="AddClassSV" method="POST">
+                                    <form class="form-horizontal" action="AddSubjectClass" method="POST">
                                         <div class="form-group">
                                             <label for="input-Default" class="col-sm-2 control-label">Tên lớp học</label>
                                             <div class="col-sm-10">
@@ -139,7 +147,13 @@
     </div> 
 </main><!-- Page Content -->
 <div class="cd-overlay"></div>
-
+<%
+} else {
+%>
+<jsp:include page="../404.jsp"></jsp:include>
+<%
+    }
+%>
 
 <!-- Javascripts -->
 <script src="assets/plugins/jquery/jquery-2.1.4.min.js"></script>

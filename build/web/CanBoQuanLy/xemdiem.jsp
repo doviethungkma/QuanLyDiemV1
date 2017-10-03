@@ -4,6 +4,8 @@
     Author     : shadyside
 --%>
 
+<%@page import="com.act.dao.RoleDA"%>
+<%@page import="com.act.model.User"%>
 <%@page import="com.act.dao.ResultDA"%>
 <%@page import="com.act.dao.ManageTeachDA"%>
 <%@page import="com.act.model.Student"%>
@@ -61,6 +63,12 @@
 
     </head>
     <body class="page-header-fixed">
+        <%
+            User user = (User) session.getAttribute("userAccount");
+            int loginID = user.getLoginID();
+            RoleDA roleDA =new RoleDA();
+            if (loginID >0 && roleDA.checkRole(loginID).equals("QuanLy")) {
+        %>
         <jsp:include page="../Menu.jsp"></jsp:include>
         <jsp:include page="../sidebar.jsp"></jsp:include>   
             <div class="page-inner">
@@ -199,7 +207,13 @@
         </div>
     </main><!-- Page Content -->
     <div class="cd-overlay"></div>
-
+    <%
+    } else {
+    %>
+    <jsp:include page="../404.jsp"></jsp:include>
+    <%
+        }
+    %>
 
     <!-- Javascripts -->
     <script src="../assets/plugins/jquery/jquery-2.1.4.min.js"></script>

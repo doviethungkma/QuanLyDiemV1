@@ -4,6 +4,8 @@
     Author     : shadyside
 --%>
 
+<%@page import="com.act.dao.RoleDA"%>
+<%@page import="com.act.model.User"%>
 <%@page import="com.act.dao.ResultDA"%>
 <%@page import="com.act.model.Student"%>
 <%@page import="com.act.dao.StudentDA"%>
@@ -61,6 +63,12 @@
 
     </head>
     <body class="page-header-fixed">
+        <%
+            User user = (User) session.getAttribute("userAccount");
+            int loginID = user.getLoginID();
+            RoleDA roleDA =new RoleDA();
+            if (loginID >0 && roleDA.checkRole(loginID).equals("GVCN")) {
+        %>
         <div class="overlay"></div>
         <form class="search-form" action="#" method="GET">
             <div class="input-group">
@@ -108,7 +116,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="login.html" class="log-out waves-effect waves-button waves-classic">
+                                    <a href="Logout" class="log-out waves-effect waves-button waves-classic">
                                         <span><i class="fa fa-sign-out m-r-xs"></i>Log out</span>
                                     </a>
                                 </li>
@@ -284,7 +292,13 @@
             </div>
         </main><!-- Page Content -->
         <div class="cd-overlay"></div>
-
+        <%
+        } else {
+        %>
+        <jsp:include page="../404.jsp"></jsp:include>
+        <%
+            }
+        %>
 
         <!-- Javascripts -->
         <script src="assets/plugins/jquery/jquery-2.1.4.min.js"></script>

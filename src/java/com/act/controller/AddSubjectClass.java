@@ -69,7 +69,7 @@ public class AddSubjectClass extends HttpServlet {
         } else {
             ManageTeachDA manageTeachDA = new ManageTeachDA();
             ArrayList<Teach> lstTeachInfo = manageTeachDA.getAllTeachInfo();
-            
+
             request.setAttribute("lstTeachInfo", lstTeachInfo);
             request.getRequestDispatcher("CanBoQuanLy/themlophoc.jsp").forward(request, response);
         }
@@ -99,9 +99,9 @@ public class AddSubjectClass extends HttpServlet {
             String lecturerName = request.getParameter("sltLecturer");
             ManageLecturerDA manageLecturerDA = new ManageLecturerDA();
             int lecturerID = manageLecturerDA.getLecturerByLecturerName(lecturerName).getID();
-            
+
             ManageTeachDA manageTeachDA = new ManageTeachDA();
-            
+
             boolean test = manageTeachDA.addTeachInfo(subjectID, lecturerID, name);
             if (test) {
                 response.sendRedirect("ManageTeach");

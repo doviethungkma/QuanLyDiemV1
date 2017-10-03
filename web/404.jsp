@@ -48,7 +48,7 @@
                             <h1 class="text-xxl text-primary text-center">404</h1>
                             <div class="details">
                                 <h3>Oops ! Something went wrong</h3>
-                                <p>We can't find the page you're looking for. Return <a href="index.html">Home</a> or search.</p>
+                                <p>We can't find the page you're looking for. Return <a href="index.jsp">Home</a> or search.</p>
                             </div>
                             <form class="input-group">
                                 <input type="text" class="form-control" placeholder="Search">

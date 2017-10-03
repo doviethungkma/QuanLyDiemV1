@@ -4,6 +4,8 @@
     Author     : shadyside
 --%>
 
+<%@page import="com.act.dao.RoleDA"%>
+<%@page import="com.act.model.User"%>
 <%@page import="com.act.model.Teach"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.act.dao.ManageSubjectDA"%>
@@ -55,6 +57,12 @@
 
     </head>
     <body class="page-header-fixed">
+         <%
+            User user = (User) session.getAttribute("userAccount");
+            int loginID = user.getLoginID();
+            RoleDA roleDA =new RoleDA();
+            if (loginID >0 && roleDA.checkRole(loginID).equals("QuanLy")) {
+        %>
         <jsp:include page="../Menu.jsp"></jsp:include>
         <jsp:include page="../sidebar.jsp"></jsp:include>
             <div class="page-inner">
@@ -109,6 +117,7 @@
                                             </thead>
                                             <tbody>
                                             <%
+                                                int i = 1;
                                                 ArrayList<Teach> lstTeachInfo = (ArrayList<Teach>) request.getAttribute("lstTeachInfo");
                                                 ManageLecturerDA manageLecturerDA = new ManageLecturerDA();
                                                 ManageSubjectDA manageSubjectDA = new ManageSubjectDA();
@@ -118,9 +127,9 @@
                                                     int teachID = teach.getID();
                                             %>
                                             <tr>
-                                                <th scope="row">1</th>
+                                                <th scope="row"><%= i++%></th>
                                                 <td>ATTTKH1</td>
-                                                <td><%= teach.getName() %></td>
+                                                <td><%= teach.getName()%></td>
                                                 <td><%= manageSubjectDA.getSubjectByID(subjectID).getSubjectName()%></td>
                                                 <td><%= manageSubjectDA.getSubjectByID(subjectID).getNumOfCredit()%></td>
                                                 <td><%= manageLecturerDA.getLecturerByLecturerID(lecturerID).getLecturerName()%></td>
@@ -149,7 +158,13 @@
         </div> Page Inner 
     </main><!-- Page Content -->
     <div class="cd-overlay"></div>
-
+    <%
+    } else {
+    %>
+    <jsp:include page="../404.jsp"></jsp:include>
+    <%
+        }
+    %>
 
     <!-- Javascripts -->
     <script src="assets/plugins/jquery/jquery-2.1.4.min.js"></script>

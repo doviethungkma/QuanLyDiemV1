@@ -70,12 +70,11 @@
                 </div>
                 <ul class="menu accordion-menu">
                     <li class="active"><a href="Redirect" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-home"></span><p>Trang chủ</p></a></li>
-                    <li><a href="ManagerAssignToMark" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Phân công chấm thi</p></a></li>
-                    <li><a href="ViewResultByManager" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Xem điểm sinh viên</p></a></li>
-                    <li><a href="profile.html" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>In danh sách điểm</p></a></li>
-                    <li><a href="ManageStudent" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Quản lý sinh viên</p></a></li>
-                    <li><a href="ManageTeach" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Quản lý lớp môn học</p></a></li>
-                    <li><a href="ManageClass" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Quản lý lớp chủ nhiệm</p></a></li>
+                    <li><a href="ManagerAssignToMark" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-pushpin"></span><p>Phân công chấm thi</p></a></li>
+                    <li><a href="ViewResultByManager" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Xem điểm sinh viên</p></a></li>
+<!--                    <li><a href="profile.html" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>In danh sách điểm</p></a></li>-->             <li><a href="ManageStudent" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Quản lý sinh viên</p></a></li>
+                    <li><a href="ManageTeach" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-briefcase"></span><p>Quản lý lớp môn học</p></a></li>
+                    <li><a href="ManageClass" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-folder-open"></span><p>Quản lý lớp chủ nhiệm</p></a></li>
                 </ul>
 
             </div><!-- Page Sidebar Inner -->

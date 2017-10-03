@@ -138,9 +138,8 @@ public class ManageLecturerDA {
 
     public static void main(String[] args) {
         ManageLecturerDA manageLecturerDA = new ManageLecturerDA();
-        ArrayList<Lecturer> lstAllLecturer = manageLecturerDA.getAllLecture();
-        for (Lecturer lecturer : lstAllLecturer) {
-            System.out.println(lecturer.getLecturerName());
-        }
+        Lecturer lecturer = manageLecturerDA.getLecturerByLecturerName("Hoàng Đức Thọ");
+        
+        System.out.println(lecturer.getID());
     }
 }

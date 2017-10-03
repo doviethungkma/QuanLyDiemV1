@@ -35,27 +35,27 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession();
-        if (session.getAttribute("loginID") != null) {
-            RoleDA roleDA = new RoleDA();
-            int loginID = (int) session.getAttribute("loginID");
-
-            if (loginID > 0) {
-                if (roleDA.checkRole(loginID).equals("QuanLy")) {
-//                    response.sendRedirect("CanBoQuanLy/canboquanly.jsp");
-                    request.getRequestDispatcher("CanBoQuanLy/canboquanly.jsp").forward(request, response);
-                } else if (roleDA.checkRole(loginID).equals("GVCN")) {
-                    request.getRequestDispatcher("GiaoVienChuNhiem/giaovienchunhiem.jsp").forward(request, response);
-                } else if (roleDA.checkRole(loginID).equals("GiangVien")) {
-                    request.getRequestDispatcher("GiangVien/giangvien.jsp").forward(request, response);
-                } else if (roleDA.checkRole(loginID).equals("SinhVien")) {
-                    request.getRequestDispatcher("SinhVien/sinhvien.jsp").forward(request, response);
-                } else {
-                    response.sendRedirect("404.jsp");
-                }
-            }
-        }
+//        response.setCharacterEncoding("UTF-8");
+//        HttpSession session = request.getSession();
+//        if (session.getAttribute("loginID") != null) {
+//            RoleDA roleDA = new RoleDA();
+//            int loginID = (int) session.getAttribute("loginID");
+//
+//            if (loginID > 0) {
+//                if (roleDA.checkRole(loginID).equals("QuanLy")) {
+////                    response.sendRedirect("CanBoQuanLy/canboquanly.jsp");
+//                    request.getRequestDispatcher("CanBoQuanLy/canboquanly.jsp").forward(request, response);
+//                } else if (roleDA.checkRole(loginID).equals("GVCN")) {
+//                    request.getRequestDispatcher("GiaoVienChuNhiem/giaovienchunhiem.jsp").forward(request, response);
+//                } else if (roleDA.checkRole(loginID).equals("GiangVien")) {
+//                    request.getRequestDispatcher("GiangVien/giangvien.jsp").forward(request, response);
+//                } else if (roleDA.checkRole(loginID).equals("SinhVien")) {
+//                    request.getRequestDispatcher("SinhVien/sinhvien.jsp").forward(request, response);
+//                } else {
+//                    response.sendRedirect("404.jsp");
+//                }
+//            }
+//        }
 
     }
 
@@ -119,9 +119,9 @@ public class Login extends HttpServlet {
 
             }
         } catch (Exception ex) {
-            ex.printStackTrace();
             response.sendRedirect("404.jsp");
         }
+        response.sendRedirect("404.jsp");
     }
 
     /**

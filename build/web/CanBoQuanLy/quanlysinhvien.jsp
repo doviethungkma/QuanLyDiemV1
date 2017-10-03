@@ -4,6 +4,8 @@
     Author     : shadyside
 --%>
 
+<%@page import="com.act.dao.RoleDA"%>
+<%@page import="com.act.model.User"%>
 <%@page import="com.act.model.ClassSV"%>
 <%@page import="com.act.dao.StudentDA"%>
 <%@page import="java.util.ArrayList"%>
@@ -55,6 +57,12 @@
 
     </head>
     <body class="page-header-fixed">
+        <%
+            User user = (User) session.getAttribute("userAccount");
+            int loginID = user.getLoginID();
+            RoleDA roleDA =new RoleDA();
+            if (loginID >0 && roleDA.checkRole(loginID).equals("QuanLy")) {
+        %>
         <jsp:include page="../Menu.jsp"></jsp:include>
         <jsp:include page="../sidebar.jsp"></jsp:include>   
             <div class="page-inner">
@@ -112,7 +120,7 @@
                                             </thead>
                                             <tbody>
                                             <%
-
+                                                int i = 1;
                                                 ArrayList<Student> lstAllStudent = (ArrayList<Student>) request.getAttribute("lstAllStudent");
                                                 for (Student student : lstAllStudent) {
                                                     StudentDA studentDA = new StudentDA();
@@ -120,7 +128,7 @@
                                                     ClassSV classSV = studentDA.getClassByID(classID);
                                             %>
                                             <tr>
-                                                <th scope="row">1</th>
+                                                <th scope="row"><%= i++%></th>
                                                 <td>AT100428</td>
                                                 <td><%= student.getStudentName()%></td>
                                                 <td><%= classSV.getClassName()%></td>
@@ -152,7 +160,13 @@
         </div> Page Inner 
     </main><!-- Page Content -->
     <div class="cd-overlay"></div>
-
+    <%
+    } else {
+    %>
+    <jsp:include page="../404.jsp"></jsp:include>
+    <%
+        }
+    %>
 
     <!-- Javascripts -->
     <script src="assets/plugins/jquery/jquery-2.1.4.min.js"></script>
