@@ -100,19 +100,28 @@ public class AddStudent extends HttpServlet {
             String username = request.getParameter("txtUsername");
             String password = request.getParameter("txtPassword");
 
-            StudentDA studentDA = new StudentDA();
-            ClassSVDA classSVDA = new ClassSVDA();
-            UserDAO userDAO = new UserDAO();
-            userDAO.addUser(username, password);
-            RoleDA roleDA = new RoleDA();
-            int classID = classSVDA.getClassByClassName(classSV).getID();
-            int loginID = userDAO.getUserIDFromUsername(username);
-            roleDA.addRoleByID(loginID, 4);
+            boolean matchFullName = fullname.matches("^[a-zA-Z0-9 ]{6,50}$");
+            boolean matchAddress = addrress.matches("^[a-zA-Z0-9 ]{6,50}$");
+            boolean matchUsername = username.matches("^[a-zA-Z0-9 ]{6,50}$");
+            boolean mathPassword = password.matches("^[a-zA-Z0-9 ]{6,50}$");
 
-            studentDA.addStudent(fullname, dateOfBirth, addrress, sex, password, classID, loginID);
-            request.getRequestDispatcher("ManageStudent").forward(request, response);
+            if (matchAddress && matchFullName && matchUsername && mathPassword) {
+                StudentDA studentDA = new StudentDA();
+                ClassSVDA classSVDA = new ClassSVDA();
+                UserDAO userDAO = new UserDAO();
+                userDAO.addUser(username, password);
+                RoleDA roleDA = new RoleDA();
+                int classID = classSVDA.getClassByClassName(classSV).getID();
+                int loginID = userDAO.getUserIDFromUsername(username);
+                roleDA.addRoleByID(loginID, 4);
 
-//            response.sendRedirect("quanlysinhvien.jsp");
+                studentDA.addStudent(fullname, dateOfBirth, addrress, sex, password, classID, loginID);
+                request.getRequestDispatcher("ManageStudent").forward(request, response);
+            }else{
+                response.sendRedirect("404.jsp");
+            }
+
+//            
         }
     }
 

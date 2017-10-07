@@ -80,7 +80,7 @@
                             <div class="panel info-box panel-white">
                                 <div class="panel-body">
                                     <div class="info-box-stats">
-                                        <p class="counter">107,200</p>
+                                        <p class="counter">1200</p>
                                         <span class="info-box-title">Tổng số sinh viên</span>
                                     </div>
                                     <div class="info-box-icon">
@@ -99,7 +99,7 @@
                             <div class="panel info-box panel-white">
                                 <div class="panel-body">
                                     <div class="info-box-stats">
-                                        <p class="counter">340,230</p>
+                                        <p class="counter">100</p>
                                         <span class="info-box-title">Tổng số giảng viên</span>
                                     </div>
                                     <div class="info-box-icon">
@@ -118,7 +118,7 @@
                             <div class="panel info-box panel-white">
                                 <div class="panel-body">
                                     <div class="info-box-stats">
-                                        <p>$<span class="counter">653,000</span></p>
+                                        <p>$<span class="counter">30</span></p>
                                         <span class="info-box-title">Tổng số lớp học</span>
                                     </div>
                                     <div class="info-box-icon">
@@ -137,7 +137,7 @@
                             <div class="panel info-box panel-white">
                                 <div class="panel-body">
                                     <div class="info-box-stats">
-                                        <p class="counter">47,500</p>
+                                        <p class="counter">1313</p>
                                         <span class="info-box-title">Tổng số tài khoản</span>
                                     </div>
                                     <div class="info-box-icon">

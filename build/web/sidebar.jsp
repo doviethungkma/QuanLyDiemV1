@@ -63,7 +63,7 @@
                         </div>
                         <div class="sidebar-profile-details">
                             <span>
-                                Nguyễn Văn Bình<br><small>Quản lý</small>
+                                Trịnh Mạnh Hà<br><small>Quản lý</small>
                             </span>
                         </div>
                     </div>
