@@ -93,7 +93,7 @@
                                 </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
-                                        <span class="user-name">Đỗ Việt Hưng<i class="fa fa-angle-down"></i></span>
+                                        <span class="user-name">Nguyễn Văn Bình<i class="fa fa-angle-down"></i></span>
                                         <img class="img-circle avatar" src="assets/images/avatar1.png" width="40" height="40" alt="">
                                     </a>
                                     <ul class="dropdown-menu dropdown-list" role="menu">
@@ -128,7 +128,7 @@
                                 <img src="assets/images/profile-menu-image.png" class="img-circle img-responsive" alt="">
                             </div>
                             <div class="sidebar-profile-details">
-                                <span>Đỗ Việt Hưng<br><small>Sinh viên</small></span>
+                                <span>Nguyễn Văn Bình<br><small>Quản lý</small></span>
                             </div>
                         </div>
                     </div>

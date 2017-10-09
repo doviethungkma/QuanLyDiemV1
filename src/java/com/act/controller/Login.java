@@ -9,7 +9,6 @@ import com.act.dao.RoleDA;
 import com.act.dao.UserDAO;
 import com.act.model.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,7 +52,7 @@ public class Login extends HttpServlet {
 //                } else if (roleDA.checkRole(loginID).equals("SinhVien")) {
 //                    request.getRequestDispatcher("SinhVien/sinhvien.jsp").forward(request, response);
 //                } else {
-//                    response.sendRedirect("index.jsp");
+//                    response.sendRedirect("404.jsp");
 //                }
 //            }
 //        }
@@ -88,60 +87,41 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-            
-            
             String username = request.getParameter("txtUsername");
             String password = request.getParameter("txtPassword");
-            // Kiểm tra username và password
-            boolean usernameMatch = username.matches("/^[A-Za-z0-9_\\.]{6,32}$/");
-            boolean passwordMatch = password.matches("/^([A-Z]){1}([\\w_\\.!@#$%^&*()]+){5,31}$/");
-
             UserDAO user = new UserDAO();
             int loginID = user.checkLogin(username, password);
             User userAccount = user.getUserByID(loginID);
             HttpSession session = request.getSession();
-
-            if (session.getAttribute("loginFailCount") != null) {
-                int lfc = (int) session.getAttribute("loginFailCount");
-                if (lfc > 5) {
-                    response.sendRedirect("404.jsp");
-                }
-            }
-
             RoleDA roleDA = new RoleDA();
 
             if (loginID > 0) {
-                session.removeAttribute("loginFailCount");
-                session.setAttribute("userAccount", userAccount);
-                session.setAttribute("loginID", loginID);
                 if (roleDA.checkRole(loginID).equals("QuanLy")) {
+                    session.setAttribute("userAccount", userAccount);
+                    session.setAttribute("loginID", loginID);
                     request.getRequestDispatcher("CanBoQuanLy/canboquanly.jsp").forward(request, response);
                 } else if (roleDA.checkRole(loginID).equals("GVCN")) {
-
+                    session.setAttribute("userAccount", userAccount);
+                    session.setAttribute("loginID", loginID);
                     request.getRequestDispatcher("GiaoVienChuNhiem/giaovienchunhiem.jsp").forward(request, response);
                     request.getRequestDispatcher("GiaoVienChuNhiem/giaovienchunhiem.jsp").forward(request, response);
                 } else if (roleDA.checkRole(loginID).equals("GiangVien")) {
+                    session.setAttribute("userAccount", userAccount);
+                    session.setAttribute("loginID", loginID);
                     request.getRequestDispatcher("GiangVien/giangvien.jsp").forward(request, response);
                 } else if (roleDA.checkRole(loginID).equals("SinhVien")) {
+                    session.setAttribute("userAccount", userAccount);
+                    session.setAttribute("loginID", loginID);
                     request.getRequestDispatcher("SinhVien/sinhvien.jsp").forward(request, response);
                 } else {
-                    response.sendRedirect("index.jsp");
+                    response.sendRedirect("404.jsp");
                 }
 
-            }
-            else if (session.getAttribute("loginFailCount") == null) {
-                session.setAttribute("loginFailCount", 1);
-                response.sendRedirect("index.jsp");
-            } else {
-                int lfc = (int) session.getAttribute("loginFailCount");
-                if(lfc<6) lfc++;
-                session.setAttribute("loginFailCount", lfc);
-                response.sendRedirect("index.jsp");
             }
         } catch (Exception ex) {
             response.sendRedirect("404.jsp");
         }
-//        response.sendRedirect("index.jsp");
+        response.sendRedirect("404.jsp");
     }
 
     /**
