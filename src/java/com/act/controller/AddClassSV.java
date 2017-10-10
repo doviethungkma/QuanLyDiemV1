@@ -65,7 +65,7 @@ public class AddClassSV extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         if (request.getSession().getAttribute("userAccount") == null) {
-            response.sendRedirect("Login.jsp");
+            response.sendRedirect("index.jsp");
         } else {
             request.getRequestDispatcher("CanBoQuanLy/themlopchunhiem.jsp").forward(request, response);
         }

@@ -6,9 +6,7 @@
 package com.act.controller;
 
 import com.act.dao.ClassSVDA;
-import com.act.dao.RoleDA;
 import com.act.dao.StudentDA;
-import com.act.dao.UserDAO;
 import com.act.model.Student;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -65,7 +63,7 @@ public class EditStudent extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         if (request.getSession().getAttribute("userAccount") == null) {
-            response.sendRedirect("Login.jsp");
+            response.sendRedirect("index.jsp");
         } else {
             StudentDA studentDA = new StudentDA();
             ArrayList<Student> lstAllStudent = studentDA.getAllStudent();

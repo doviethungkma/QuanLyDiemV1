@@ -60,9 +60,12 @@
     <body class="page-header-fixed">
         <%
             User user = (User) session.getAttribute("userAccount");
-            int loginID = user.getLoginID();
-            RoleDA roleDA = new RoleDA();
-            if (loginID > 0 && roleDA.checkRole(loginID).equals("QuanLy")) {
+            if (user == null) {
+                response.sendRedirect("http://localhost:8080/QuanLyDiemV1/");
+            } else {
+                int loginID = user.getLoginID();
+                RoleDA roleDA = new RoleDA();
+                if (roleDA.checkRole(loginID).equals("QuanLy")) {
         %>
         <jsp:include page="../Menu.jsp"></jsp:include>
         <jsp:include page="../sidebar.jsp"></jsp:include>
@@ -158,10 +161,9 @@
     </main><!-- Page Content -->
     <div class="cd-overlay"></div>
     <%
-    } else {
-    %>
-    <jsp:include page="../404.jsp"></jsp:include>
-    <%
+            } else {
+                response.sendRedirect("http://localhost:8080/QuanLyDiemV1/404.jsp");
+            }
         }
     %>
 

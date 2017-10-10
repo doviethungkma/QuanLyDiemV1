@@ -34,7 +34,7 @@ public class ManageClass extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         if (request.getSession().getAttribute("userAccount") == null) {
-            response.sendRedirect("Login.jsp");
+            response.sendRedirect("index.jsp");
         } else {
             ClassSVDA classSVDA = new ClassSVDA();
             ArrayList<ClassSV> lstClassSVDA = classSVDA.getAllClass();

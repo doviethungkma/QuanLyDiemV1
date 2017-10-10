@@ -66,11 +66,14 @@
 
     </head>
     <body class="page-header-fixed">
-         <%
+        <%
             User user = (User) session.getAttribute("userAccount");
-            int loginID = user.getLoginID();
-            RoleDA roleDA =new RoleDA();
-            if (loginID >0 && roleDA.checkRole(loginID).equals("GiangVien")) {
+            if (user == null) {
+                response.sendRedirect("http://localhost:8080/QuanLyDiemV1/");
+            } else {
+                int loginID = user.getLoginID();
+                RoleDA roleDA = new RoleDA();
+                if (roleDA.checkRole(loginID).equals("GiangVien")) {
         %>
         <div class="overlay"></div>
         <form class="search-form" action="#" method="GET">
@@ -309,13 +312,12 @@
             </div>
         </main><!-- Page Content -->
         <div class="cd-overlay"></div>
-<%
-} else {
-%>
-<jsp:include page="../404.jsp"></jsp:include>
-<%
-    }
-%>
+        <%
+                } else {
+                    response.sendRedirect("http://localhost:8080/QuanLyDiemV1/404.jsp");
+                }
+            }
+        %>
 
         <!-- Javascripts -->
         <script src="assets/plugins/jquery/jquery-2.1.4.min.js"></script>

@@ -62,7 +62,7 @@ public class VaoDiem extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         if (request.getSession().getAttribute("userAccount") == null) {
-            response.sendRedirect("Login.jsp");
+            response.sendRedirect("index.jsp");
         } else {
             request.getRequestDispatcher("GiangVien/vaodiem.jsp").forward(request, response);
         }
