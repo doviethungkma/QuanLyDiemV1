@@ -4,6 +4,8 @@
     Author     : shadyside
 --%>
 
+<%@page import="com.act.dao.RoleDA"%>
+<%@page import="com.act.model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -62,7 +64,25 @@
         </script>
     </head>
     <body class="page-login">
-
+        <%
+            User user = (User) session.getAttribute("userAccount");
+            if (user != null) {
+                int loginID = user.getLoginID();
+                RoleDA roleDA = new RoleDA();
+                if (roleDA.checkRole(loginID).equals("QuanLy")) {
+                    request.getRequestDispatcher("CanBoQuanLy/canboquanly.jsp").forward(request, response);
+                } else if (roleDA.checkRole(loginID).equals("GVCN")) {
+                    request.getRequestDispatcher("GiaoVienChuNhiem/giaovienchunhiem.jsp").forward(request, response);
+                    request.getRequestDispatcher("GiaoVienChuNhiem/giaovienchunhiem.jsp").forward(request, response);
+                } else if (roleDA.checkRole(loginID).equals("GiangVien")) {
+                    request.getRequestDispatcher("GiangVien/giangvien.jsp").forward(request, response);
+                } else if (roleDA.checkRole(loginID).equals("SinhVien")) {
+                    request.getRequestDispatcher("SinhVien/sinhvien.jsp").forward(request, response);
+                } else {
+                    response.sendRedirect("404.jsp");
+                }
+            }
+        %>
         <main class="page-content">
             <div class="page-inner">
                 <div id="main-wrapper">
