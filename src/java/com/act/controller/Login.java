@@ -95,29 +95,39 @@ public class Login extends HttpServlet {
             HttpSession session = request.getSession();
             RoleDA roleDA = new RoleDA();
 
-            if (loginID > 0) {
-                if (roleDA.checkRole(loginID).equals("QuanLy")) {
-                    session.setAttribute("userAccount", userAccount);
-                    request.getRequestDispatcher("CanBoQuanLy/canboquanly.jsp").forward(request, response);
-                } else if (roleDA.checkRole(loginID).equals("GVCN")) {
-                    session.setAttribute("userAccount", userAccount);
-                    request.getRequestDispatcher("GiaoVienChuNhiem/giaovienchunhiem.jsp").forward(request, response);
-                    request.getRequestDispatcher("GiaoVienChuNhiem/giaovienchunhiem.jsp").forward(request, response);
-                } else if (roleDA.checkRole(loginID).equals("GiangVien")) {
-                    session.setAttribute("userAccount", userAccount);
-                    request.getRequestDispatcher("GiangVien/giangvien.jsp").forward(request, response);
-                } else if (roleDA.checkRole(loginID).equals("SinhVien")) {
-                    session.setAttribute("userAccount", userAccount);
-                    request.getRequestDispatcher("SinhVien/sinhvien.jsp").forward(request, response);
-                } else {
+            if (session.getAttribute("loginFailCount") != null) {
+                int lfc = (int) session.getAttribute("loginFailCount");
+                if (lfc > 5) {
                     response.sendRedirect("404.jsp");
                 }
+            }
 
+            if (loginID > 0) {
+                session.removeAttribute("loginFailCount");
+                session.setAttribute("userAccount", userAccount);
+                if (roleDA.checkRole(loginID).equals("QuanLy")) {
+                    request.getRequestDispatcher("CanBoQuanLy/canboquanly.jsp").forward(request, response);
+                } else if (roleDA.checkRole(loginID).equals("GVCN")) {
+                    request.getRequestDispatcher("GiaoVienChuNhiem/giaovienchunhiem.jsp").forward(request, response);
+                } else if (roleDA.checkRole(loginID).equals("GiangVien")) {
+                    request.getRequestDispatcher("GiangVien/giangvien.jsp").forward(request, response);
+                } else if (roleDA.checkRole(loginID).equals("SinhVien")) {
+                    request.getRequestDispatcher("SinhVien/sinhvien.jsp").forward(request, response);
+                }
+            } else if (session.getAttribute("loginFailCount") == null) {
+                session.setAttribute("loginFailCount", 1);
+                response.sendRedirect("index.jsp");
+            } else {
+                int lfc = (int) session.getAttribute("loginFailCount");
+                if (lfc < 6) {
+                    lfc++;
+                }
+                session.setAttribute("loginFailCount", lfc);
+                response.sendRedirect("index.jsp");
             }
         } catch (Exception ex) {
             response.sendRedirect("404.jsp");
         }
-        response.sendRedirect("404.jsp");
     }
 
     /**

@@ -98,6 +98,22 @@
                                     <div class="form-group">
                                         <input type="password" name="txtPassword" class="form-control" placeholder="Password" required>
                                     </div>
+
+                                    <%
+                                        Object tes = session.getAttribute("loginFailCount");
+                                        if (session.getAttribute("loginFailCount") != null) {
+                                            Integer a = (Integer) session.getAttribute("loginFailCount");
+                                            if (a < 6) {
+                                    %>
+                                    <p style="color: red">Bạn đã đăng nhập sai <%= a%> lần</p>
+                                    <a href="index.jsp"></a>
+                                    <%} else {
+
+                                    %>
+                                    <p  style = "color: red" > Bạn đã hết số lần đăng nhập </p>
+                                    <%                                            }
+                                        }
+                                    %>
                                     <button type="submit" class="btn btn-success btn-block">Login</button>
                                     <a href="forgot.html" class="display-block text-center m-t-md text-sm">Quên mật khẩu?</a>
                                 </form>
